@@ -8,7 +8,7 @@ gglm is single-header, just copy `gglm.h` into your include folder and you're go
 
 ## why?
 
-the cglm code I was writing before, vs the equivalent gglm code:
+a small example of the cglm code I was writing before, vs the equivalent gglm code:
 
 ```c
 // --- cglm ---
@@ -21,7 +21,7 @@ vec3 midpoint;
 glm_vec2_add(a, b, midpoint);
 glm_vec2_divs(midpoint, 2.0, midpoint);
 
-printf("(%f, %f, %f)\n", midpoint[0], midpoint[1], midpoint[3]);
+printf("(%f, %f, %f)\n", midpoint[0], midpoint[1], midpoint[2]);
 
 // --- gglm ---
 v3 a = v2_fill(10.0);

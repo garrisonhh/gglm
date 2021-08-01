@@ -38,23 +38,23 @@ text = """\
 #define GGLM_CLAMP(x, lo, hi) GGLM_MIN(GGLM_MAX(x, lo), hi)
 
 // map(), any(), all() are super useful for expressive programming
-#define v2_map(v, func) (v2){{func(v.x), func(v.y)}}
-#define v3_map(v, func) (v3){{func(v.x), func(v.y), func(v.z)}}
-#define v4_map(v, func) (v4){{func(v.x), func(v.y), func(v.z), func(v.w)}}
+#define v2_MAP(v, func) (v2){{func(v.x), func(v.y)}}
+#define v3_MAP(v, func) (v3){{func(v.x), func(v.y), func(v.z)}}
+#define v4_MAP(v, func) (v4){{func(v.x), func(v.y), func(v.z), func(v.w)}}
 
 /*
 a cool trick with any() and all() is to use conditionals, for example:
-> v4_any(v, 0.0 >) // checks if zero is more than any of vector values
+> v4_ANY(v, 0.0 >) // checks if zero is more than any of vector values
 you can even combine them with functions (this is the v4_eq implementation!):
-> v4_all(v4_sub(a, b), GGLM_EPSILON > fabsf)
+> v4_ALL(v4_sub(a, b), GGLM_EPSILON > fabsf)
 */
-#define v2_any(v, func) (func(v.x) || func(v.y))
-#define v3_any(v, func) (func(v.x) || func(v.y) || func(v.z))
-#define v4_any(v, func) (func(v.x) || func(v.y) || func(v.z) || func(v.w))
+#define v2_ANY(v, func) (func(v.x) || func(v.y))
+#define v3_ANY(v, func) (func(v.x) || func(v.y) || func(v.z))
+#define v4_ANY(v, func) (func(v.x) || func(v.y) || func(v.z) || func(v.w))
 
-#define v2_all(v, func) (func(v.x) && func(v.y))
-#define v3_all(v, func) (func(v.x) && func(v.y) && func(v.z))
-#define v4_all(v, func) (func(v.x) && func(v.y) && func(v.z) && func(v.w))
+#define v2_ALL(v, func) (func(v.x) && func(v.y))
+#define v3_ALL(v, func) (func(v.x) && func(v.y) && func(v.z))
+#define v4_ALL(v, func) (func(v.x) && func(v.y) && func(v.z) && func(v.w))
 
 /*
 these are great for printf's, expanding vectors into float arrays, or using
