@@ -36,12 +36,21 @@ you can even combine them with functions (this is the v4_eq implementation!):
 #define v3_all(v, func) (func(v.x) && func(v.y) && func(v.z))
 #define v4_all(v, func) (func(v.x) && func(v.y) && func(v.z) && func(v.w))
 
+/*
+these are great for printf's or expanding vectors into float arrays:
+> printf("v: %f %f\n", v2_expand(v));
+> float vectors[] = {v2_expand(a), v3_expand(b), v2_expand(c)};
+*/
+#define v2_expand(v) v.x, v.y
+#define v3_expand(v) v.x, v.y, v.z
+#define v4_expand(v) v.x, v.y, v.z, v.w
+
 // --- macro-expansion generation below this point ---
 typedef union v2 {
     struct {
         float x, y;
     };
-    float arr[2];
+    float ptr[2];
 } v2;
 
 typedef union v3 {
@@ -49,7 +58,7 @@ typedef union v3 {
         float x, y, z;
     };
     v2 xy;
-    float arr[3];
+    float ptr[3];
 } v3;
 
 typedef union v4 {
@@ -58,7 +67,7 @@ typedef union v4 {
     };
     v2 xy;
     v3 xyz;
-    float arr[4];
+    float ptr[4];
 } v4;
 
 static inline v2 v2_(float x, float y) {

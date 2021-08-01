@@ -56,6 +56,16 @@ you can even combine them with functions (this is the v4_eq implementation!):
 #define v3_all(v, func) (func(v.x) && func(v.y) && func(v.z))
 #define v4_all(v, func) (func(v.x) && func(v.y) && func(v.z) && func(v.w))
 
+/*
+these are great for printf's, expanding vectors into float arrays, or using
+functions that weren't built for gglm:
+> printf("v: %f %f\\n", v2_expand(v));
+> float vectors[] = {v2_expand(a), v3_expand(b), v2_expand(c)};
+*/
+#define v2_expand(v) v.x, v.y
+#define v3_expand(v) v.x, v.y, v.z
+#define v4_expand(v) v.x, v.y, v.z, v.w
+
 // --- macro-expansion generation below this point ---
 """ + text + """\
 #endif

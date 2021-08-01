@@ -13,7 +13,7 @@
         struct { float x, y IF3(, z) IF4(, w); };\
         IF3(v2 xy;)\
         IF4(v3 xyz;)\
-        float arr[N];\
+        float ptr[N];\
     } VEC;
 
 // function definition macros
