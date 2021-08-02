@@ -37,6 +37,10 @@ text = """\
 #define GGLM_MIN(a, b) ((a) < (b) ? (a) : (b))
 #define GGLM_CLAMP(x, lo, hi) GGLM_MIN(GGLM_MAX(x, lo), hi)
 
+#define v2_ZERO (v2){{0.0, 0.0}}
+#define v3_ZERO (v3){{0.0, 0.0, 0.0}}
+#define v4_ZERO (v4){{0.0, 0.0, 0.0, 0.0}}
+
 // map(), any(), all() are super useful for expressive programming
 #define v2_MAP(v, func) (v2){{func(v.x), func(v.y)}}
 #define v3_MAP(v, func) (v3){{func(v.x), func(v.y), func(v.z)}}
@@ -59,12 +63,12 @@ you can even combine them with functions (this is the v4_eq implementation!):
 /*
 these are great for printf's, expanding vectors into float arrays, or using
 functions that weren't built for gglm:
-> printf("v: %f %f\\n", v2_expand(v));
-> float vectors[] = {v2_expand(a), v3_expand(b), v2_expand(c)};
+> printf("v: %f %f\\n", v2_EXPAND(v));
+> float vectors[] = {v2_EXPAND(a), v3_EXPAND(b), v2_EXPAND(c)};
 */
-#define v2_expand(v) v.x, v.y
-#define v3_expand(v) v.x, v.y, v.z
-#define v4_expand(v) v.x, v.y, v.z, v.w
+#define v2_EXPAND(v) v.x, v.y
+#define v3_EXPAND(v) v.x, v.y, v.z
+#define v4_EXPAND(v) v.x, v.y, v.z, v.w
 
 // --- macro-expansion generation below this point ---
 """ + text + """\

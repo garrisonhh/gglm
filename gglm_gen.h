@@ -126,7 +126,7 @@
 
 #define FN_EQUALS()\
     FUNC_NV(bool, eq) (VEC a, VEC b) {\
-        return CALL(all)(CALL(sub)(a, b), GGLM_EPSILON > fabsf);\
+        return CALL(ALL)(CALL(sub)(a, b), GGLM_EPSILON > fabsf);\
     }
 
 // implementation
@@ -166,6 +166,11 @@ VECTOR_UNION()
 #define N 4
 #define IF4(...) __VA_ARGS__
 VECTOR_UNION()
+
+// utilities
+static inline bool gglm_eq(float a, float b) {
+    return fabsf(b - a) < GGLM_EPSILON;
+}
 
 // functions
 #define N 2

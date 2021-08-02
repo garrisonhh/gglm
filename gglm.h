@@ -17,6 +17,10 @@
 #define GGLM_MIN(a, b) ((a) < (b) ? (a) : (b))
 #define GGLM_CLAMP(x, lo, hi) GGLM_MIN(GGLM_MAX(x, lo), hi)
 
+#define v2_ZERO (v2){{0.0, 0.0}}
+#define v3_ZERO (v3){{0.0, 0.0, 0.0}}
+#define v4_ZERO (v4){{0.0, 0.0, 0.0, 0.0}}
+
 // map(), any(), all() are super useful for expressive programming
 #define v2_MAP(v, func) (v2){{func(v.x), func(v.y)}}
 #define v3_MAP(v, func) (v3){{func(v.x), func(v.y), func(v.z)}}
@@ -39,12 +43,12 @@ you can even combine them with functions (this is the v4_eq implementation!):
 /*
 these are great for printf's, expanding vectors into float arrays, or using
 functions that weren't built for gglm:
-> printf("v: %f %f\n", v2_expand(v));
-> float vectors[] = {v2_expand(a), v3_expand(b), v2_expand(c)};
+> printf("v: %f %f\n", v2_EXPAND(v));
+> float vectors[] = {v2_EXPAND(a), v3_EXPAND(b), v2_EXPAND(c)};
 */
-#define v2_expand(v) v.x, v.y
-#define v3_expand(v) v.x, v.y, v.z
-#define v4_expand(v) v.x, v.y, v.z, v.w
+#define v2_EXPAND(v) v.x, v.y
+#define v3_EXPAND(v) v.x, v.y, v.z
+#define v4_EXPAND(v) v.x, v.y, v.z, v.w
 
 // --- macro-expansion generation below this point ---
 typedef union v2 {
@@ -70,6 +74,10 @@ typedef union v4 {
     v3 xyz;
     float ptr[4];
 } v4;
+
+static inline bool gglm_eq(float a, float b) {
+    return fabsf(b - a) < GGLM_EPSILON;
+}
 
 static inline v2 v2_(float x, float y) {
     return (v2){{x, y}};
@@ -161,7 +169,7 @@ static inline v2 v2_clamp(v2 v, v2 lower, v2 upper) {
 }
 
 static inline bool v2_eq(v2 a, v2 b) {
-    return v2_all(v2_sub(a, b), GGLM_EPSILON > fabsf);
+    return v2_ALL(v2_sub(a, b), GGLM_EPSILON > fabsf);
 }
 
 static inline v3 v3_(float x, float y, float z) {
@@ -255,7 +263,7 @@ static inline v3 v3_clamp(v3 v, v3 lower, v3 upper) {
 }
 
 static inline bool v3_eq(v3 a, v3 b) {
-    return v3_all(v3_sub(a, b), GGLM_EPSILON > fabsf);
+    return v3_ALL(v3_sub(a, b), GGLM_EPSILON > fabsf);
 }
 
 static inline v4 v4_(float x, float y, float z, float w) {
@@ -351,7 +359,7 @@ static inline v4 v4_clamp(v4 v, v4 lower, v4 upper) {
 }
 
 static inline bool v4_eq(v4 a, v4 b) {
-    return v4_all(v4_sub(a, b), GGLM_EPSILON > fabsf);
+    return v4_ALL(v4_sub(a, b), GGLM_EPSILON > fabsf);
 }
 
 #endif

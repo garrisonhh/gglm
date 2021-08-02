@@ -66,6 +66,12 @@ v3 xyz = v.xyz;
 float *ptr = v.ptr; // equivalent to float *ptr = (float *)&v;
 ```
 
+#### utilities
+
+`gglm_eq(float a, float b)`
+
+whether two floats are equivalent with epsilon
+
 #### functions that apply to all vector types
 
 `vN_(float x, float y ...)`
