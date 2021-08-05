@@ -4,7 +4,7 @@ gglm is a knockoff of the vector parts of [cglm](https://github.com/recp/cglm). 
 
 ## getting started
 
-gglm is single-header, just copy `gglm.h` into your include folder and you're good to go!
+gglm is single-header, just copy it into your include folder and you're good to go!
 
 ## why?
 
@@ -30,7 +30,7 @@ v3 b = v2_(5.0, -5.0, 2.0);
 // find the midpoint
 v3 midpoint = v3_divs(v3_add(a, b), 2.0);
 
-printf("(%f, %f, %f)\n", v3_expand(midpoint));
+printf("(%f, %f, %f)\n", v3_EXPAND(midpoint));
 ```
 
 ## reference
@@ -129,3 +129,13 @@ clamp a vector within bounding box defined by a lower and upper bound
 `eq`
 
 whether two vectors are equal, with epsilon
+
+#### macros
+
+`ANY(vN, func)` `ALL(vN, func)`
+
+allows for functional-like boolean stuff.
+
+`EXPAND`
+
+expands vector out (`v2` to `v.x, v.y`) for function calls, printf, etc.
