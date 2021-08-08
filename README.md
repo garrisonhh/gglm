@@ -6,6 +6,10 @@ gglm is a knockoff of the vector parts of [cglm](https://github.com/recp/cglm). 
 
 gglm is single-header, just copy it into your include folder and you're good to go!
 
+## modifying
+
+gglm.h is generated through an unholy combination of the C preprocessor, the clang formatter, and python. take a look at `gen.sh` for the steps it takes, it's not complicated just cursed.
+
 ## why?
 
 a small example of the cglm code I was writing before, vs the equivalent gglm code:
